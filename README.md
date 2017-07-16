@@ -16,5 +16,7 @@ the step is the number of posts sequentially each thread will search through
 
 the threads is the number of processes that this script will create
 
-
 running "archive 1 10000 100" will create 100 processes searching through post number 1 to 100*10000 and downloading every page containing the text "Off Topic"
+
+
+crawler archive just copies everything on the front page of the offtopic forum
