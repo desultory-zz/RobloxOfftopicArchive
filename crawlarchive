@@ -1,0 +1,3 @@
+#!/bin/bash
+curl -s https://forum.roblox.com/Forum/ShowForum.aspx?ForumID=18 |grep '"post-list-subject"' |sed -e 's/^.*\(\/Forum\/ShowPost*\)/\1/g' |sed -e 's/\"><.*//' |sed -e 's/^/https:\/\/forum.roblox.com/' > pl
+wget -i pl -nc
