@@ -1,0 +1,33 @@
+#!/bin/bash
+
+func_mine () (
+	inc=$1
+        while [ $1 -lt $2 ]; do
+                if [[ `curl -s "https://forum.roblox.com/Forum/ShowPost.aspx?PostID=${inc}"` == *"Off Topic"* ]]; then
+                        wget -qnc "https://forum.roblox.com/Forum/ShowPost.aspx?PostID=${inc}"
+                fi
+                inc=$(($inc + 1))
+        done
+)
+if [ "$1" == 'help' ]; then
+	echo "first arg is start, second arg is step, third arg is count"
+elif [ "$1" -gt '0' ]; then
+	if [ "$2" -ge '1' ]; then
+		if [ "$3" -ge '1' ]; then
+			start=$1
+			step=$2
+			end=$3
+			while [ $end -gt '0' ]; do
+				func_mine $(($start + $step * ($end - 1))) $(($start + $step * ($end - 1) + $step - 1)) &
+				end=$(($end - 1))
+			done
+		else
+			echo "count must be an integer greater than or equal to 1"
+		fi
+	else
+		echo "step must be an integer greater than or equal to 1"
+	fi
+else
+	echo "start number must be an integer greater than 0"
+fi
+
